@@ -42,12 +42,12 @@ describe("Operações no carrinho", () => {
     let quantidade = Math.floor(Math.random() * 10);
     productPage.irParaCarrinho();
     carrinhoPage.atualizaCarrinho(quantidade);
-    //carrinhoPage.validaMensagemAdicionado.should();
+    //carrinhoPage.validaMensagemAdicionado.should('have.text', 'Carrinho atualizado.');
   });
 
   it("deve remover item do carrinho com sucesso", () => {
     productPage.irParaCarrinho();
     carrinhoPage.removeItem();
-    //carrinhoPage.validaMensagemAdicionado.should();
+    //carrinhoPage.validaMensagemAdicionado.should('have.text', '“Augusta Pullover Jacket” removido. Desfazer?');
   });
 });
