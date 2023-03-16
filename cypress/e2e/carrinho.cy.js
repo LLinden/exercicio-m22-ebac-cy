@@ -1,7 +1,4 @@
 /// <reference types="cypress" />
-const dados = require("../fixtures/addToCart.json");
-const dados = require("../fixtures/removeFromCart.html");
-import homePagePage from "../support/pages/homePage.page.js";
 import productPage from "../support/pages/product.page.js";
 import carrinhoPage from "../support/pages/carrinho.page.js";
 
@@ -10,42 +7,35 @@ describe("Operações no carrinho", () => {
     cy.intercept(
       {
         method: "POST",
-        url: "/?wc-ajax=get_refreshed_fragments",
+        url: "/product/augusta-pullover-jacket/",
       },
-      (req) => {
-        req.reply({
-          statusCode: 200,
-          body: `${req.query.callback}(
-              ${JSON.stringify(dados.fragments)}
-                )`,
-        });
-      }
+      { fixture: "produtoAdicionado.html" }
     );
 
     cy.intercept(
         {
-          method: "GET",
-          url: "/?removed_item=1",
+          method: "POST",
+          url: "/carrinho/",
         },
-        (req) => {
-          req.reply({
-            statusCode: 200,
-            body: `${req.query.callback}(
-                ${JSON.stringify(dados.fragments)}
-                  )`,
-          });
-        }
+        { fixture: "produtoAtualizado.html" }
       );
+
+    cy.intercept(
+      {
+        method: "GET",
+        url: "/?removed_item=1",
+      },
+      { fixture: "produtoRemovido.html" }
+    );
   });
 
   beforeEach(() => {
-    cy.visit("/");
-    homePagePage.adicionaProdutoNoCarrinho();
+    cy.visit("/product/augusta-pullover-jacket/");
     productPage.compraProduto();
   });
 
-  it("deve adicionar item no carrinho com sucesso", () => {
-    productPage.validaMensagemAdicionado().should("have.property", "cart_hash");
+  it.only("deve adicionar item no carrinho com sucesso", () => {
+    productPage.validaMensagemAdicionado().should('have.text', '“Augusta Pullover Jacket” foi adicionado no seu carrinho.');
   });
 
   it("deve atualizar um item do carrinho com sucesso", () => {
@@ -53,10 +43,9 @@ describe("Operações no carrinho", () => {
     productPage.irParaCarrinho();
     carrinhoPage.atualizaCarrinho(quantidade);
     //carrinhoPage.validaMensagemAdicionado.should();
-
   });
 
-  it.only("deve remover item do carrinho com sucesso", () => {
+  it("deve remover item do carrinho com sucesso", () => {
     productPage.irParaCarrinho();
     carrinhoPage.removeItem();
     //carrinhoPage.validaMensagemAdicionado.should();
