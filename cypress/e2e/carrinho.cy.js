@@ -13,12 +13,12 @@ describe("Operações no carrinho", () => {
     );
 
     cy.intercept(
-        {
-          method: "POST",
-          url: "/carrinho/",
-        },
-        { fixture: "produtoAtualizado.html" }
-      );
+      {
+        method: "POST",
+        url: "/carrinho/",
+      },
+      { fixture: "produtoAtualizado.html" }
+    );
 
     cy.intercept(
       {
@@ -34,20 +34,24 @@ describe("Operações no carrinho", () => {
     productPage.compraProduto();
   });
 
-  it.only("deve adicionar item no carrinho com sucesso", () => {
-    productPage.validaMensagemAdicionado().should('have.text', '“Augusta Pullover Jacket” foi adicionado no seu carrinho.');
+  it("deve adicionar item no carrinho com sucesso", () => {
+    let mensagem =
+      "\n                      Ver carrinho\n                      “Augusta Pullover Jacket” foi adicionado no\n                      seu carrinho.\n                    ";
+    productPage.validaMensagemAdicionado(mensagem);
   });
 
-  it("deve atualizar um item do carrinho com sucesso", () => {
+  it.only("deve atualizar um item do carrinho com sucesso", () => {
+    let mensagem = '';
     let quantidade = Math.floor(Math.random() * 10);
     productPage.irParaCarrinho();
     carrinhoPage.atualizaCarrinho(quantidade);
-    //carrinhoPage.validaMensagemAdicionado.should('have.text', 'Carrinho atualizado.');
+    carrinhoPage.validaMensagemAdicionado(mensagem);
   });
 
   it("deve remover item do carrinho com sucesso", () => {
+    let mensagem = '';
     productPage.irParaCarrinho();
     carrinhoPage.removeItem();
-    //carrinhoPage.validaMensagemAdicionado.should('have.text', '“Augusta Pullover Jacket” removido. Desfazer?');
+    carrinhoPage.validaMensagemAdicionado(mensagem);
   });
 });

@@ -6,8 +6,8 @@ class Carrinho {
     cy.get(".pull-right > .btn").click();
   }
 
-  validaMensagemAdicionado() {
-    cy.get(".woocommerce-message");
+  validaMensagemAdicionado(mensagem) {
+    cy.get(".woocommerce-message").should('have.text', mensagem);
   }
 
   removeItem() {

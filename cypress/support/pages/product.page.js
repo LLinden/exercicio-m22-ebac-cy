@@ -7,13 +7,13 @@ class Product {
     cy.get(".single_add_to_cart_button").click();
   }
 
-  validaMensagemAdicionado() {
-    cy.get(".woocommerce-message");
+  validaMensagemAdicionado(mensagem) {
+    cy.get(".woocommerce-message").should('have.text', mensagem);
+
   }
 
   irParaCarrinho() {
-    cy.get(".dropdown-toggle > .text-skin > .icon-basket").click();
-    cy.get(".view-cart").click();
+    cy.get('.woocommerce-message > .button').click();
   }
 }
 export default new Product();
