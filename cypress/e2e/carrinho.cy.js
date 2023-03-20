@@ -1,9 +1,37 @@
 /// <reference types="cypress" />
 import productPage from "../support/pages/product.page.js";
 import carrinhoPage from "../support/pages/carrinho.page.js";
+const fragments = require("../fixtures/fragments.json");
+const fragments2 = require("../fixtures/fragments2.json");
 
 describe("Operações no carrinho", () => {
   before(() => {
+    cy.intercept(
+      {
+        method: "POST",
+        url: "/?wc-ajax=get_refreshed_fragments",
+      },
+      (req) => {
+        req.reply({
+          statusCode: 200,
+          body: JSON.stringify(fragments),
+        });
+      }
+    );
+
+    cy.intercept(
+        {
+          method: "POST",
+          url: "/wp-admin/admin-ajax.php",
+        },
+        (req) => {
+          req.reply({
+            statusCode: 200,
+            body: JSON.stringify(fragments2),
+          });
+        }
+      );
+
     cy.intercept(
       {
         method: "POST",
@@ -41,7 +69,7 @@ describe("Operações no carrinho", () => {
   });
 
   it.only("deve atualizar um item do carrinho com sucesso", () => {
-    let mensagem = '';
+    let mensagem = "";
     let quantidade = Math.floor(Math.random() * 10);
     productPage.irParaCarrinho();
     carrinhoPage.atualizaCarrinho(quantidade);
@@ -49,7 +77,7 @@ describe("Operações no carrinho", () => {
   });
 
   it("deve remover item do carrinho com sucesso", () => {
-    let mensagem = '';
+    let mensagem = "";
     productPage.irParaCarrinho();
     carrinhoPage.removeItem();
     carrinhoPage.validaMensagemAdicionado(mensagem);
