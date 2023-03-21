@@ -20,17 +20,17 @@ describe("Operações no carrinho", () => {
     );
 
     cy.intercept(
-        {
-          method: "POST",
-          url: "/wp-admin/admin-ajax.php",
-        },
-        (req) => {
-          req.reply({
-            statusCode: 200,
-            body: JSON.stringify(fragments2),
-          });
-        }
-      );
+      {
+        method: "POST",
+        url: "/wp-admin/admin-ajax.php",
+      },
+      (req) => {
+        req.reply({
+          statusCode: 200,
+          body: JSON.stringify(fragments2),
+        });
+      }
+    );
 
     cy.intercept(
       {
@@ -51,7 +51,15 @@ describe("Operações no carrinho", () => {
     cy.intercept(
       {
         method: "GET",
-        url: "/?removed_item=1",
+        url: "/carrinho/",
+      },
+      { fixture: "carrinho.html" }
+    );
+
+    cy.intercept(
+      {
+        method: "GET",
+        url: "/carrinho/?remove_item=3cde1a1d01117e44bc8b2fa597e9acef&_wpnonce=a6aa9a715e",
       },
       { fixture: "produtoRemovido.html" }
     );
@@ -68,8 +76,8 @@ describe("Operações no carrinho", () => {
     productPage.validaMensagemAdicionado(mensagem);
   });
 
-  it.only("deve atualizar um item do carrinho com sucesso", () => {
-    let mensagem = "";
+  it("deve atualizar um item do carrinho com sucesso", () => {
+    let mensagem = "\n Carrinho atualizado.\n                    ";
     let quantidade = Math.floor(Math.random() * 10);
     productPage.irParaCarrinho();
     carrinhoPage.atualizaCarrinho(quantidade);
@@ -77,7 +85,8 @@ describe("Operações no carrinho", () => {
   });
 
   it("deve remover item do carrinho com sucesso", () => {
-    let mensagem = "";
+    let mensagem =
+      "\n “Augusta Pullover Jacket” removido.\n Desfazer?\n                    ";
     productPage.irParaCarrinho();
     carrinhoPage.removeItem();
     carrinhoPage.validaMensagemAdicionado(mensagem);
