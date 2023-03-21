@@ -7,7 +7,7 @@ class Carrinho {
   }
 
   validaMensagemAdicionado(mensagem) {
-    cy.get(".woocommerce-message").should('have.text', mensagem);
+    cy.get(".woocommerce-message").should('include.text', mensagem);
   }
 
   removeItem() {

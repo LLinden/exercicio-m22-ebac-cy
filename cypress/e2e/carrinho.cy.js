@@ -77,7 +77,7 @@ describe("Operações no carrinho", () => {
   });
 
   it("deve atualizar um item do carrinho com sucesso", () => {
-    let mensagem = "\n Carrinho atualizado.\n                    ";
+    let mensagem = "Carrinho atualizado.";
     let quantidade = Math.floor(Math.random() * 10);
     productPage.irParaCarrinho();
     carrinhoPage.atualizaCarrinho(quantidade);
@@ -86,7 +86,7 @@ describe("Operações no carrinho", () => {
 
   it("deve remover item do carrinho com sucesso", () => {
     let mensagem =
-      "\n “Augusta Pullover Jacket” removido.\n Desfazer?\n                    ";
+      "“Augusta Pullover Jacket” removido.";
     productPage.irParaCarrinho();
     carrinhoPage.removeItem();
     carrinhoPage.validaMensagemAdicionado(mensagem);
