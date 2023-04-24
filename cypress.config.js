@@ -7,8 +7,9 @@ module.exports = defineConfig({
     reporterOptions: {
       reportDir: "cypress/results",
       overwrite: false,
+      reportFilename: "index.html",
       html: true,
-      json: true,
+      json: false,
     },
     baseUrl: "http://lojaebac.ebaconline.art.br",
     setupNodeEvents(on, config) {

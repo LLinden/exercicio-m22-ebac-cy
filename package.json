@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npx serverest",
+    "cy:run": "npx cypress run",
     "test": "cypress run --reporter mochawesome --reporter-options reportDir=\"cypress/results\",overwrite=false,html=false,json=true && npx mochawesome-merge \"cypress/results/*.json\" > mochawesome.json && npx marge mochawesome.json",
-    "cy:run-ci": "start-server-and-test start http://localhost:3000/api-doc test"
+    "cy:run-ci": "start-server-and-test start http://localhost:3000/ test"
   },
   "keywords": [],
   "author": "",
