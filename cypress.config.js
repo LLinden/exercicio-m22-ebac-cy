@@ -5,7 +5,7 @@ module.exports = defineConfig({
     watchForFileChanges: false,
     reporter: "mochawesome",
     reporterOptions: {
-      reportDir: "cypress/results",
+      reportDir: "cypress/mochawesome",
       overwrite: false,
       reportFilename: "index.html",
       html: true,
