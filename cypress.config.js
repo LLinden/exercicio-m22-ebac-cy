@@ -12,7 +12,7 @@ module.exports = defineConfig({
     },
     baseUrl: "http://lojaebac.ebaconline.art.br",
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      // teste
     },
   },
 });
