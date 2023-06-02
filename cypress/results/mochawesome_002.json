@@ -1,0 +1,143 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-06-02T17:46:13.429Z",
+    "end": "2023-06-02T17:46:52.958Z",
+    "duration": 39529,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "a1ab5864-fa39-4ef1-b811-2f1098b4dd4a",
+      "title": "",
+      "fullFile": "cypress\\e2e\\carrinho.cy.js",
+      "file": "cypress\\e2e\\carrinho.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "502cb1f0-fa15-4390-a412-172c18da3dfe",
+          "title": "Operações no carrinho",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "deve adicionar item no carrinho com sucesso",
+              "fullTitle": "Operações no carrinho deve adicionar item no carrinho com sucesso",
+              "timedOut": null,
+              "duration": 17067,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let mensagem = \"\\n                      Ver carrinho\\n                      “Augusta Pullover Jacket” foi adicionado no\\n                      seu carrinho.\\n                    \";\n_productPage.default.validaMensagemAdicionado(mensagem);",
+              "err": {},
+              "uuid": "e566ec86-c3d8-42e5-8dd4-c9b4a13b9838",
+              "parentUUID": "502cb1f0-fa15-4390-a412-172c18da3dfe",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "deve atualizar um item do carrinho com sucesso",
+              "fullTitle": "Operações no carrinho deve atualizar um item do carrinho com sucesso",
+              "timedOut": null,
+              "duration": 15276,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let mensagem = \"Carrinho atualizado.\";\nlet quantidade = Math.floor(Math.random() * 10);\n_productPage.default.irParaCarrinho();\n_carrinhoPage.default.atualizaCarrinho(quantidade);\n_carrinhoPage.default.validaMensagemAdicionado(mensagem);",
+              "err": {},
+              "uuid": "ef06f7b7-cf84-424c-ad8f-4c903b2c071b",
+              "parentUUID": "502cb1f0-fa15-4390-a412-172c18da3dfe",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "deve remover item do carrinho com sucesso",
+              "fullTitle": "Operações no carrinho deve remover item do carrinho com sucesso",
+              "timedOut": null,
+              "duration": 6834,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let mensagem = \"“Augusta Pullover Jacket” removido.\";\n_productPage.default.irParaCarrinho();\n_carrinhoPage.default.removeItem();\n_carrinhoPage.default.validaMensagemAdicionado(mensagem);",
+              "err": {},
+              "uuid": "b174e1d4-5711-457e-9df7-6be4e749a767",
+              "parentUUID": "502cb1f0-fa15-4390-a412-172c18da3dfe",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e566ec86-c3d8-42e5-8dd4-c9b4a13b9838",
+            "ef06f7b7-cf84-424c-ad8f-4c903b2c071b",
+            "b174e1d4-5711-457e-9df7-6be4e749a767"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 39177,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
